@@ -10,11 +10,11 @@ function Message({message}) {
   const ref = useRef();
 
   useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    ref.current?.scrollIntoView({ behaviour:'smooth' });
   }, [message]);
 
 
-  console.log(message);
+  // console.log(message);
   
   return (
 
@@ -25,7 +25,7 @@ function Message({message}) {
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
-        {message.image && <img src={message.img} alt="" />}
+        {message.img && <img src={message.img} alt="" />}
       </div>
     </div>
   )

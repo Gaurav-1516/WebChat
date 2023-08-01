@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import {AiOutlineVideoCamera,AiOutlineMore,AiOutlineUserAdd} from 'react-icons/ai'
+// import {AiOutlineVideoCamera,AiOutlineMore,AiOutlineUserAdd} from 'react-icons/ai'
 import Messages from './Messages'
 import Input from './Input'
 import { ChatContext } from '../../context/ChatContext'
@@ -12,11 +12,11 @@ function Chat() {
     <div className='chat'>
       <div className="chatInfo">
         <span>{data.user?.displayName}</span>
-        <div className="chatIcons">
+        {/* <div className="chatIcons">
             <AiOutlineUserAdd size={30} color='white'/>
             <AiOutlineVideoCamera size={30} color='white'/>
             <AiOutlineMore size={30} color='white'/>
-        </div>
+        </div> */}
       </div>
       <Messages/>
       <Input/>

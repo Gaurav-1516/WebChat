@@ -11,37 +11,13 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 function Input() {
   const [text,setText] = useState("");
   const [img,setImg] = useState(null);
-  const [file,setFile] = useState(null);
+  // const [file,setFile] = useState(null);
 
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
 
   const handleSend = async () => {
     if (img) {
-      const storageRef = ref(storage, uuid());
-
-      const uploadTask = uploadBytesResumable(storageRef, img);
-
-      uploadTask.on(
-        (error) => {
-          //TODO:Handle Error
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, "chats", data.chatId), {
-              messages: arrayUnion({
-                id: uuid(),
-                text,
-                senderId: currentUser.uid,
-                date: Timestamp.now(),
-                img: downloadURL,
-              }),
-            });
-          });
-        }
-      );
-    }
-    else if (file) {
       const storageRef = ref(storage, uuid());
 
       const uploadTask = uploadBytesResumable(storageRef, img);
@@ -97,8 +73,8 @@ function Input() {
     <div className="input">
       <input type='text' placeholder='Message your friend...' onChange={(e)=>setText(e.target.value)} value={text}/>
       <div className="send">
-        <input type="file" style={{display:'none'}} id='image' onChange={(e)=>setImg(e.target.files[0])}/>
-        <label htmlFor="image">
+        <input type="file" style={{display:'none'}} id="file" onChange={(e)=>setImg(e.target.files[0])}/>
+        <label htmlFor="file">
           <BiImageAdd size={25}/>
         </label>
         {/* <input type="file" style={{display:'none'}} id='file' onChange={(e)=>setFile(e.target.files[0])}/>
