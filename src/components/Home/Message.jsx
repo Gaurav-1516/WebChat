@@ -24,7 +24,8 @@ function Message({message}) {
         <span>{}</span>
       </div>
       <div className="messageContent">
-        <p>{message.text}</p>
+
+        {message.text != "" && <p>{message.text}</p>}
         {message.img && <img src={message.img} alt="" />}
       </div>
     </div>
